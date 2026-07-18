@@ -39,7 +39,7 @@ export const ForecastChart = React.memo(() => {
         wind_speed: hour.wind_speed || 0
       }));
     } else if (timeRange === '3 Days') {
-      return weatherData.hourly.filter((_, i) => i % 3 === 0).slice(0, 24).map(hour => ({
+      return weatherData.hourly.slice(0, 24).map(hour => ({
         timeStr: `${formatDay(hour.dt)} ${formatTime(hour.dt)}`,
         timeTs: hour.dt,
         temp: Math.round(hour.temp),

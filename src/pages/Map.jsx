@@ -69,7 +69,7 @@ export const MapPage = () => {
 
   if (isLoading || loading) {
     return (
-      <div className="w-full h-full p-4 flex flex-col gap-4">
+      <div className="flex-1 w-full flex flex-col p-4 gap-4">
         <LoadingSkeleton className="h-14 w-full max-w-md rounded-2xl" />
         <LoadingSkeleton className="flex-1 w-full rounded-[32px]" />
       </div>
@@ -77,7 +77,7 @@ export const MapPage = () => {
   }
 
   return (
-    <div className="w-full h-full relative flex flex-col rounded-[32px] overflow-hidden bg-gray-100">
+    <div className="flex-1 w-full h-full relative flex flex-col rounded-[32px] overflow-hidden bg-gray-100">
       
       {/* Search Overlay */}
       <div className="absolute top-6 left-1/2 -translate-x-1/2 w-full max-w-md px-4 z-[1000]">
@@ -140,7 +140,7 @@ export const MapPage = () => {
         center={[city.lat, city.lon]} 
         zoom={5} 
         zoomControl={true}
-        className="w-full h-full z-0"
+        className="flex-1 w-full h-full min-h-[400px] z-0"
       >
         <MapUpdater center={[city.lat, city.lon]} zoom={5} />
         <CoordinateDisplay />

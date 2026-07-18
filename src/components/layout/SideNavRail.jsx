@@ -1,6 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, History, Map as MapIcon, Settings, Cloud } from 'lucide-react';
+import { LayoutDashboard, History, Map as MapIcon, Settings } from 'lucide-react';
 import { motion } from 'framer-motion';
+import logoIcon from '../../assets/logo-icon.svg';
 
 export const SideNavRail = () => {
   const location = useLocation();
@@ -18,8 +19,8 @@ export const SideNavRail = () => {
       
       {/* Top Logo - Hidden on mobile */}
       <div className="hidden md:flex flex-col items-center gap-2 mb-12">
-        <Link to="/" className="w-12 h-12 rounded-[18px] bg-gradient-to-tr from-blue-600 to-blue-400 flex items-center justify-center text-white shadow-lg shadow-blue-500/30 hover:shadow-blue-500/40 hover:scale-105 transition-all">
-          <Cloud className="w-6 h-6 fill-current" />
+        <Link to="/" className="w-12 h-12 hover:scale-105 transition-all outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-[18px]">
+          <img src={logoIcon} alt="AtmosIQ Home" className="w-full h-full" />
         </Link>
       </div>
 

@@ -31,10 +31,49 @@ export const WeatherService = {
 
   async getForecast(lat, lon) {
     try {
-      const res = await apiClient.get('/onecall', { params: { lat, lon, exclude: 'minutely,alerts' } });
-      return res.data;
+      const [currentRes, forecastRes] = await Promise.all([
+        apiClient.get('/weather', { params: { lat, lon } }),
+        apiClient.get('/forecast', { params: { lat, lon } })
+      ]);
+      
+      const current = currentRes.data;
+      const list = forecastRes.data.list;
+
+      const hourly = list.map(item => ({
+        dt: item.dt,
+        temp: item.main.temp,
+        pop: item.pop || 0,
+        humidity: item.main.humidity,
+        wind_speed: item.wind.speed,
+        weather: item.weather
+      }));
+
+      const dailyMap = {};
+      list.forEach(item => {
+        const date = new Date(item.dt * 1000).toDateString();
+        if (!dailyMap[date]) {
+          dailyMap[date] = {
+            dt: item.dt,
+            temp: {
+              min: item.main.temp_min,
+              max: item.main.temp_max
+            },
+            humidity: item.main.humidity,
+            wind_speed: item.wind.speed,
+            pop: item.pop || 0,
+            weather: item.weather
+          };
+        } else {
+          dailyMap[date].temp.min = Math.min(dailyMap[date].temp.min, item.main.temp_min);
+          dailyMap[date].temp.max = Math.max(dailyMap[date].temp.max, item.main.temp_max);
+          dailyMap[date].pop = Math.max(dailyMap[date].pop, item.pop || 0);
+        }
+      });
+      const daily = Object.values(dailyMap);
+
+      return { current, hourly, daily };
     } catch (err) {
-      console.warn('Falling back to mock forecast data.');
+      console.warn('Falling back to mock forecast data.', err);
       return mockData;
     }
   },

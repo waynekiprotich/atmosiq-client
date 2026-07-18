@@ -24,12 +24,14 @@ export const MainLayout = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
-              className="w-full h-full overflow-y-auto"
+              className="w-full h-full overflow-y-auto flex flex-col"
               id="main-content"
               tabIndex={-1}
             >
-              <Outlet />
-              <Footer />
+              <div className="flex-1 flex flex-col w-full min-h-0">
+                <Outlet />
+              </div>
+              {location.pathname !== '/map' && <Footer />}
             </motion.div>
           </AnimatePresence>
         </div>

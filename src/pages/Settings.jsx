@@ -3,6 +3,7 @@ import { Container } from '../components/ui/Container';
 import { useSettings } from '../hooks/useSettings';
 import { Settings as SettingsIcon, Globe, Thermometer, Wind, Eye, Droplets, Monitor, Download, Upload, Trash2, Info } from 'lucide-react';
 import { motion } from 'framer-motion';
+import logoIcon from '../assets/logo-icon.svg';
 
 export const Settings = () => {
   const { settings, updateSettings, resetSettings, exportSettings, importSettings } = useSettings();
@@ -296,8 +297,8 @@ export const Settings = () => {
 
           {activeTab === 'about' && (
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-6 flex flex-col items-center justify-center text-center py-12">
-              <div className="w-20 h-20 rounded-3xl bg-gradient-to-tr from-blue-600 to-blue-400 flex items-center justify-center text-white shadow-xl shadow-blue-500/30 mb-4">
-                <Globe className="w-10 h-10" />
+              <div className="w-20 h-20 rounded-[24px] shadow-xl shadow-blue-500/20 mb-4 overflow-hidden">
+                <img src={logoIcon} alt="AtmosIQ" className="w-full h-full" />
               </div>
               <h2 className="text-2xl font-semibold text-gray-900">AtmosIQ</h2>
               <p className="text-gray-500 max-w-md">A premium frontend weather dashboard built for performance, design excellence, and seamless interactivity.</p>
