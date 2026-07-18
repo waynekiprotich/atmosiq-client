@@ -8,13 +8,13 @@ const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
     const data = payload[0].payload;
     return (
-      <div className="bg-white/90 backdrop-blur-xl border border-gray-100 p-4 rounded-2xl shadow-xl">
-        <p className="text-sm font-semibold text-gray-800 mb-2">{label}</p>
-        <div className="grid grid-cols-2 gap-x-6 gap-y-2 text-xs">
-          <div className="flex flex-col"><span className="text-gray-400">Temp</span><span className="font-bold text-gray-900 text-sm">{data.temp}°</span></div>
-          <div className="flex flex-col"><span className="text-gray-400">Precipitation</span><span className="font-bold text-blue-600 text-sm">{Math.round(data.pop * 100)}%</span></div>
-          <div className="flex flex-col"><span className="text-gray-400">Humidity</span><span className="font-bold text-gray-900 text-sm">{data.humidity}%</span></div>
-          <div className="flex flex-col"><span className="text-gray-400">Wind</span><span className="font-bold text-gray-900 text-sm">{data.wind_speed}m/s</span></div>
+      <div className="bg-white/95 backdrop-blur-xl border border-gray-100 p-5 rounded-2xl shadow-xl">
+        <p className="text-sm font-semibold text-gray-800 mb-3">{label}</p>
+        <div className="grid grid-cols-2 gap-x-8 gap-y-3 text-xs">
+          <div className="flex flex-col"><span className="text-gray-400">Temp</span><span className="font-bold text-gray-900 text-sm">{data.temp != null ? `${data.temp}°` : '--'}</span></div>
+          <div className="flex flex-col"><span className="text-gray-400">Precip</span><span className="font-bold text-blue-600 text-sm">{data.pop != null ? `${Math.round(data.pop * 100)}%` : '--'}</span></div>
+          <div className="flex flex-col"><span className="text-gray-400">Humidity</span><span className="font-bold text-gray-900 text-sm">{data.humidity != null ? `${data.humidity}%` : '--'}</span></div>
+          <div className="flex flex-col"><span className="text-gray-400">Wind</span><span className="font-bold text-gray-900 text-sm">{data.wind_speed != null ? `${data.wind_speed} m/s` : '--'}</span></div>
         </div>
       </div>
     );
@@ -33,29 +33,29 @@ export const ForecastChart = React.memo(() => {
       return weatherData.hourly.slice(0, 8).map(hour => ({
         timeStr: formatTime(hour.dt),
         timeTs: hour.dt,
-        temp: Math.round(hour.temp),
-        pop: hour.pop,
-        humidity: hour.humidity || 0,
-        wind_speed: hour.wind_speed || 0
+        temp: hour.temp != null ? Math.round(hour.temp) : null,
+        pop: hour.pop ?? 0,
+        humidity: hour.humidity ?? 0,
+        wind_speed: hour.wind_speed ?? 0
       }));
     } else if (timeRange === '3 Days') {
       return weatherData.hourly.slice(0, 24).map(hour => ({
         timeStr: `${formatDay(hour.dt)} ${formatTime(hour.dt)}`,
         timeTs: hour.dt,
-        temp: Math.round(hour.temp),
-        pop: hour.pop,
-        humidity: hour.humidity || 0,
-        wind_speed: hour.wind_speed || 0
+        temp: hour.temp != null ? Math.round(hour.temp) : null,
+        pop: hour.pop ?? 0,
+        humidity: hour.humidity ?? 0,
+        wind_speed: hour.wind_speed ?? 0
       }));
     } else {
       // Week
       return weatherData.daily.slice(0, 7).map(day => ({
         timeStr: formatDay(day.dt),
         timeTs: day.dt,
-        temp: Math.round(day.temp.max),
-        pop: day.pop,
-        humidity: day.humidity || 0,
-        wind_speed: day.wind_speed || 0
+        temp: day.temp?.max != null ? Math.round(day.temp.max) : null,
+        pop: day.pop ?? 0,
+        humidity: day.humidity ?? 0,
+        wind_speed: day.wind_speed ?? 0
       }));
     }
   }, [weatherData, timeRange]);
@@ -92,7 +92,7 @@ export const ForecastChart = React.memo(() => {
         </div>
       </div>
 
-      <div className="flex-1 w-full relative">
+      <div className="flex-1 w-full relative flex flex-col justify-center min-h-[220px]">
         <AnimatePresence mode="wait">
           <motion.div 
             key={timeRange}

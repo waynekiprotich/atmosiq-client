@@ -18,14 +18,14 @@ export const SideNavRail = () => {
     <nav className="fixed md:relative bottom-0 left-0 w-full md:w-24 md:h-screen bg-white/80 md:bg-transparent backdrop-blur-xl md:backdrop-blur-none border-t md:border-t-0 md:border-r border-gray-200/50 flex md:flex-col items-center justify-between py-3 md:py-8 px-6 md:px-0 z-50 shadow-[0_-10px_40px_rgba(0,0,0,0.03)] md:shadow-none pb-safe">
       
       {/* Top Logo - Hidden on mobile */}
-      <div className="hidden md:flex flex-col items-center gap-2 mb-12">
+      <div className="hidden md:flex flex-col items-center gap-2 mb-10">
         <Link to="/" className="w-12 h-12 hover:scale-105 transition-all outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-[18px]">
           <img src={logoIcon} alt="AtmosIQ Home" className="w-full h-full" />
         </Link>
       </div>
 
       {/* Nav Links */}
-      <div className="flex md:flex-col w-full md:w-auto justify-between md:justify-center items-center gap-2 sm:gap-6 md:gap-8 flex-1">
+      <div className="flex md:flex-col w-full md:w-auto justify-between md:justify-center items-center gap-2 sm:gap-6 md:gap-6 flex-1">
         {navItems.map((item) => {
           const isActive = currentPath === item.path;
           const Icon = item.icon;
@@ -40,7 +40,7 @@ export const SideNavRail = () => {
                 {isActive && (
                   <motion.div
                     layoutId="activeNavIndicator"
-                    className="absolute inset-0 bg-white md:bg-white rounded-[20px] shadow-sm md:shadow-md border border-gray-100/50"
+                    className="absolute inset-0 bg-white rounded-[20px] shadow-md border border-gray-100/50"
                     transition={{ type: "spring", stiffness: 400, damping: 30 }}
                   />
                 )}
@@ -60,7 +60,7 @@ export const SideNavRail = () => {
       </div>
 
       {/* User Avatar - Hidden on mobile or pushed to end */}
-      <div className="hidden md:flex mt-auto group relative">
+      <div className="hidden md:flex mt-10 group relative">
         <Link to="/settings" className="w-12 h-12 rounded-full bg-gray-200 border-2 border-white shadow-sm overflow-hidden flex items-center justify-center hover:ring-4 hover:ring-blue-100 transition-all cursor-pointer">
           <img src="https://ui-avatars.com/api/?name=User&background=E5E7EB&color=374151" alt="Profile" className="w-full h-full object-cover" />
         </Link>

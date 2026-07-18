@@ -8,7 +8,7 @@ export const CityTabs = () => {
   const [isAdding, setIsAdding] = useState(false);
 
   return (
-    <div role="tablist" aria-label="Saved Cities" className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-2">
+    <div role="tablist" aria-label="Saved Cities" className="flex items-center gap-3 overflow-x-auto no-scrollbar pb-2">
       {savedCities.map((savedCity, idx) => {
         const isActive = city.name === savedCity.name && city.lat === savedCity.lat;
         return (

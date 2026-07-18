@@ -31,7 +31,7 @@ export const Dashboard = () => {
         </div>
         
         {/* Grid Row 1 */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
           <div className="lg:col-span-4 h-[340px]">
             <LoadingSkeleton className="w-full h-full rounded-3xl" />
           </div>
@@ -41,7 +41,7 @@ export const Dashboard = () => {
         </div>
         
         {/* Grid Row 2 */}
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-12 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-12 gap-6 lg:gap-8 mt-6 lg:mt-8">
           <div className="md:col-span-1 lg:col-span-4 h-[280px]">
             <LoadingSkeleton className="w-full h-full rounded-3xl" />
           </div>
@@ -66,24 +66,24 @@ export const Dashboard = () => {
       <CityTabs />
       
       {/* Grid Row 1 */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        <div className="lg:col-span-4">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+        <div className="lg:col-span-4 flex flex-col h-full">
           <HeroWeatherCard />
         </div>
-        <div className="lg:col-span-8">
+        <div className="lg:col-span-8 flex flex-col h-full">
           <ForecastChart />
         </div>
       </div>
       
       {/* Grid Row 2 */}
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-12 gap-6">
-        <div className="md:col-span-1 lg:col-span-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch mt-6 lg:mt-8">
+        <div className="md:col-span-1 lg:col-span-4 flex flex-col h-full">
           <DayDetailsCard />
         </div>
-        <div className="md:col-span-1 lg:col-span-4">
+        <div className="md:col-span-1 lg:col-span-4 flex flex-col h-full">
           <SunriseSunsetCard />
         </div>
-        <div className="md:col-span-1 lg:col-span-4">
+        <div className="md:col-span-1 lg:col-span-4 flex flex-col h-full">
           <MapPreviewCard />
         </div>
       </div>

@@ -34,11 +34,11 @@ export const MapPreviewCard = () => {
         whileHover={{ y: -2 }}
         className="glass-panel rounded-[32px] overflow-hidden relative flex flex-col h-[340px] shadow-sm border border-gray-100/50"
       >
-        <div className="p-6 pb-4 flex justify-between items-center z-10 bg-gradient-to-b from-white/95 via-white/80 to-transparent absolute top-0 w-full">
+        <div className="p-6 lg:p-8 pb-4 lg:pb-6 flex justify-between items-center z-10 bg-gradient-to-b from-white/95 via-white/80 to-transparent absolute top-0 w-full">
           <h3 className="text-sm font-semibold text-gray-800 tracking-wide">Global Map</h3>
           <button 
             onClick={() => setIsExpanded(true)}
-            className="flex items-center gap-1.5 text-xs font-semibold text-blue-700 bg-white shadow-sm border border-gray-200 px-4 py-1.5 rounded-xl hover:bg-blue-50 transition-colors"
+            className="flex items-center gap-1.5 text-xs font-semibold text-blue-700 bg-white shadow-sm border border-gray-200 px-4 py-1.5 rounded-xl hover:bg-blue-50 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <Maximize2 className="w-3.5 h-3.5" /> Expand
           </button>

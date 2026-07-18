@@ -71,8 +71,8 @@ export const HeroWeatherCard = React.memo(() => {
           </div>
         </div>
 
-        <div className="relative z-10 mt-8 flex items-end justify-between">
-          <div>
+        <div className="relative z-10 mt-8 flex flex-1 items-end justify-between">
+          <div className="flex flex-col justify-end h-full">
             <div className="flex items-start">
               <motion.h1 
                 initial={{ y: 20, opacity: 0 }}
@@ -80,7 +80,7 @@ export const HeroWeatherCard = React.memo(() => {
                 transition={{ delay: 0.1, duration: 0.5 }}
                 className="text-7xl lg:text-8xl font-light tracking-tighter"
               >
-                {Math.round(current.temp)}°
+                {current?.temp != null ? Math.round(current.temp) : '--'}°
               </motion.h1>
             </div>
             
@@ -88,17 +88,17 @@ export const HeroWeatherCard = React.memo(() => {
               initial={{ y: 10, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.5 }}
-              className="mt-4 flex flex-col gap-1.5"
+              className="mt-4 flex flex-col gap-2"
             >
               <div className="flex items-center gap-2">
-                <WeatherIcon className="w-5 h-5 text-blue-100 drop-shadow-sm" />
-                <p className="text-xl font-medium capitalize">{current.weather[0].description}</p>
+                <WeatherIcon className="w-6 h-6 text-blue-100 drop-shadow-sm" />
+                <p className="text-xl font-medium capitalize">{current?.weather?.[0]?.description || 'Unknown'}</p>
               </div>
-              <p className="text-blue-100/90 flex gap-4 text-sm font-medium">
-                <span>Feels like {Math.round(current.feels_like)}°</span>
-                <span className="flex items-center gap-1"><Wind className="w-3.5 h-3.5" /> {Math.round(current.wind_speed)} m/s</span>
-                <span className="flex items-center gap-1"><Droplets className="w-3.5 h-3.5" /> {current.humidity}%</span>
-              </p>
+              <div className="text-blue-100/90 flex flex-wrap gap-4 text-sm font-medium mt-1">
+                <span>Feels like {current?.feels_like != null ? Math.round(current.feels_like) : '--'}°</span>
+                <span className="flex items-center gap-1"><Wind className="w-4 h-4" /> {current?.wind_speed != null ? Math.round(current.wind_speed) : '--'} m/s</span>
+                <span className="flex items-center gap-1"><Droplets className="w-4 h-4" /> {current?.humidity ?? '--'}%</span>
+              </div>
             </motion.div>
           </div>
 
@@ -106,9 +106,9 @@ export const HeroWeatherCard = React.memo(() => {
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.3, type: "spring" }}
-            className="hidden sm:flex"
+            className="hidden sm:flex self-center"
           >
-            <WeatherIcon className="w-32 h-32 text-white/20 drop-shadow-2xl" strokeWidth={1} />
+            <WeatherIcon className="w-32 h-32 lg:w-40 lg:h-40 text-white/20 drop-shadow-2xl" strokeWidth={1} />
           </motion.div>
         </div>
       </motion.div>

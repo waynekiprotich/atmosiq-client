@@ -18,18 +18,20 @@ export const SunriseSunsetCard = () => {
     >
       <h3 className="text-sm font-semibold text-gray-800 tracking-wide mb-6">Sun & Moon</h3>
       
-      <div className="flex-1 flex flex-col justify-center">
-        <DaylightArc sunriseTs={sunrise} sunsetTs={sunset} nowTs={nowTs} />
+      <div className="flex-1 flex flex-col justify-center items-center">
+        <div className="w-full max-w-[240px]">
+          <DaylightArc sunriseTs={sunrise} sunsetTs={sunset} nowTs={nowTs} />
 
-        <div className="flex justify-between items-end mt-8 px-2">
-          <div className="flex flex-col gap-1">
-            <span className="text-xs font-semibold text-gray-500 uppercase flex items-center gap-1.5"><Sunrise className="w-4 h-4 text-orange-400" /> Sunrise</span>
-            <span className="font-bold text-gray-900 text-xl tracking-tight">{formatTime(sunrise)}</span>
-          </div>
-          
-          <div className="flex flex-col text-right gap-1">
-            <span className="text-xs font-semibold text-gray-500 uppercase flex items-center justify-end gap-1.5"><Sunset className="w-4 h-4 text-orange-600" /> Sunset</span>
-            <span className="font-bold text-gray-900 text-xl tracking-tight">{formatTime(sunset)}</span>
+          <div className="flex justify-between items-end mt-8 w-full">
+            <div className="flex flex-col gap-1 items-start">
+              <span className="text-xs font-semibold text-gray-500 uppercase flex items-center gap-1.5"><Sunrise className="w-4 h-4 text-orange-400" /> Sunrise</span>
+              <span className="font-bold text-gray-900 text-xl tracking-tight">{sunrise ? formatTime(sunrise) : '--:--'}</span>
+            </div>
+            
+            <div className="flex flex-col gap-1 items-end">
+              <span className="text-xs font-semibold text-gray-500 uppercase flex items-center justify-end gap-1.5"><Sunset className="w-4 h-4 text-orange-600" /> Sunset</span>
+              <span className="font-bold text-gray-900 text-xl tracking-tight">{sunset ? formatTime(sunset) : '--:--'}</span>
+            </div>
           </div>
         </div>
       </div>
