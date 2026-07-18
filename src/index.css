@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import 'leaflet/dist/leaflet.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-[#EEF1F6] text-gray-900 antialiased;
+  /* Disable pull-to-refresh to make app feel more native */
+  overscroll-behavior-y: none;
+}
+
+/* Glassmorphism utilities */
+.glass-panel {
+  @apply bg-[#F1F3F6] backdrop-blur-md border border-white/50 shadow-sm;
+}
